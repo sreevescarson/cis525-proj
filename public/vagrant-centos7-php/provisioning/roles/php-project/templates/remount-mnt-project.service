@@ -1,0 +1,13 @@
+[Unit]
+Description=Remount /mnt/project
+Requires=mnt-project.mount
+After=mnt-project.mount
+RequiresMountsFor=/mnt/project
+
+[Service]
+Type=oneshot
+ExecStart=/etc/init.d/remount-mnt-project.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

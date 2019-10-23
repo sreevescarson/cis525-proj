@@ -1,0 +1,22 @@
+---
+
+- hosts: vagrants
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - git
+    - httpd
+    - mariadb
+    - php-remi
+    - phpmyadmin-remi
+    - php-project
+    - php-tools
+
+- hosts: sakura-cloud
+  remote_user: root
+  roles:
+    - yum
+    - git
+    - httpd
+    - php-remi
+    - phpmyadmin-remi
