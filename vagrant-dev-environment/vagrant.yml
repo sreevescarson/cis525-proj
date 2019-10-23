@@ -1,0 +1,47 @@
+---
+- name: centos VM used for php, mysql development
+  hosts: all
+  become: yes
+  force_handlers: true
+  vars:
+    pkg_install_list:
+      - "@Development tools"
+      - vim
+      - git
+      - net-tools
+      - php
+      - php-mysql
+      - buildah
+      - podman
+      - skopeo
+      - ansible
+  pre_tasks:
+  - name: Set epel download location
+    set_fact:
+      epel_rpm_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+  - name: Install epel
+    yum:
+      name: "{{ epel_rpm_url }}"
+      state: present
+  - name: install packages
+    yum:
+      name: "{{ pkg_install_list }}"
+      state: latest
+  - name: add podman alias
+    lineinfile:
+      create: yes
+      path: "{{ ansible_env.HOME }}/.bashrc"
+      state: present
+      line: 'alias podman="sudo podman"'
+  - name: make php dir
+    file: 
+      path: /root/php
+      state: directory
+  - name: copy php file to VM
+    copy:
+      src: connect.php
+      dest: /root/php/connect.php
+
+  roles:
+  - { role: mysql }
+  - { role: php7 }

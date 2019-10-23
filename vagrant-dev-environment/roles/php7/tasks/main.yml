@@ -1,0 +1,2 @@
+- name: php runtime environment
+  shell: podman run -d --name phpfpm -v /root/php:/app bitnami/php-fpm

@@ -1,0 +1,9 @@
+[submodule "roles/dagda"]
+	path = roles/dagda
+	url = git@git.umms.med.umich.edu:devops/sds-roles/dagda.git
+[submodule "roles/mongo"]
+	path = roles/mongo
+	url = git@git.umms.med.umich.edu:devops/sds-roles/mongo.git
+[submodule "roles/kernel-headers"]
+	path = roles/kernel-headers
+	url = git@git.umms.med.umich.edu:devops/sds-roles/kernel-headers.git

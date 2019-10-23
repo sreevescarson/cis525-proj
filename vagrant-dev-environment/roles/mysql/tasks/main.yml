@@ -1,0 +1,14 @@
+- name: make mysql persistent data dir
+  file:
+    path: /root/mysql-data
+    owner: "27"
+    group: "27"
+    state: directory
+
+- name: check if port 3306 is in use
+  command: netstat -an | grep 3306
+  register: netstat_out
+- debug: var=netstat_out
+- name: run mysql
+  shell: podman run -d -e MYSQL_USER=user -e MYSQL_PASSWORD=pass -e MYSQL_DATABASE=db -p 3306:3306 mysql/mysql-server:8.0
+  when: netstat_out.stdout | length > 0
