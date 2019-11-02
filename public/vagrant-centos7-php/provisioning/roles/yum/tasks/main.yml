@@ -1,6 +1,0 @@
-# for sakura-cloud
-
-- name: Remove yum-plugin-priorities
-  yum: pkg={{ item }} state=absent
-  with_items:
-    - yum-plugin-priorities

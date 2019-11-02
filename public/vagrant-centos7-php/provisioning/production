@@ -1,4 +1,0 @@
-# $ ansible-playbook -vv -i provisioning/production provisioning/site.yml
-
-[sakura-cloud]
-XXX.XXX.XXX.XXX
