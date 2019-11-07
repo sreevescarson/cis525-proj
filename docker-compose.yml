@@ -24,7 +24,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ${PROJECT_ROOT}/public_html:/var/www/html/
+      - ${PROJECT_ROOT}:/var/www/html/
     container_name: apache
   mysql:
     image: mysql:5.7
